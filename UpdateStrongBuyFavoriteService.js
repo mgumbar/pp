@@ -139,6 +139,7 @@ async function run() {
 run();
 
 
+
 function convertToDecimal(inputString) {
     let formattedString = inputString.replace(',', '.');
     formattedString = formattedString.replace('%', '');
