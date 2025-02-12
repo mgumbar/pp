@@ -15,7 +15,6 @@ async function run() {
     console.log('Connected to MongoDB');
     const browser = await puppeteer.launch({
         headless: 'true',
-        executablePath: '/usr/bin/google-chrome',
         args: ['--no-sandbox','--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
@@ -154,7 +153,6 @@ async function getMarketAnalystRecommendation(indice) {
     // Lancement du navigateur en mode visible pour le débogage
     const browser = await puppeteer.launch({
         headless: 'true',
-        executablePath: '/usr/bin/google-chrome',
         args: ['--no-sandbox','--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
