@@ -15,7 +15,15 @@ async function run() {
     console.log('Connected to MongoDB');
     const browser = await puppeteer.launch({
         headless: 'true',
-        args: ['--no-sandbox','--disable-setuid-sandbox'],
+        args: ['--disable-gpu',
+            '--disable-dev-shm-usage',
+            '--disable-setuid-sandbox',
+            '--no-first-run',
+            '--no-sandbox',
+            '--no-zygote',
+            '--deterministic-fetch',
+            '--disable-features=IsolateOrigins',
+            '--disable-site-isolation-trials'],
     });
     const page = await browser.newPage();
 
@@ -139,7 +147,6 @@ async function run() {
 run();
 
 
-
 function convertToDecimal(inputString) {
     let formattedString = inputString.replace(',', '.');
     formattedString = formattedString.replace('%', '');
@@ -154,7 +161,15 @@ async function getMarketAnalystRecommendation(indice) {
     // Lancement du navigateur en mode visible pour le débogage
     const browser = await puppeteer.launch({
         headless: 'true',
-        args: ['--no-sandbox','--disable-setuid-sandbox'],
+        args: ['--disable-gpu',
+            '--disable-dev-shm-usage',
+            '--disable-setuid-sandbox',
+            '--no-first-run',
+            '--no-sandbox',
+            '--no-zygote',
+            '--deterministic-fetch',
+            '--disable-features=IsolateOrigins',
+            '--disable-site-isolation-trials'],
     });
     const page = await browser.newPage();
 
