@@ -3815,7 +3815,11 @@ async function run() {
     const collection = db.collection('forecasts');
     const collectionIndices = db.collection('indices');
     console.log('Connected to MongoDB');
-    const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ 
+    executablePath: '/usr/bin/chromium-browser', 
+    headless: true, 
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+});
     const page = await browser.newPage();
 
     try {
