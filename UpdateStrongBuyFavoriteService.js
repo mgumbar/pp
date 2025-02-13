@@ -13,18 +13,11 @@ async function run() {
     const collection = db.collection('forecasts');
     const collectionIndices = db.collection('indices');
     console.log('Connected to MongoDB');
-    const browser = await puppeteer.launch({
-        headless: 'true',
-        args: ['--disable-gpu',
-            '--disable-dev-shm-usage',
-            '--disable-setuid-sandbox',
-            '--no-first-run',
-            '--no-sandbox',
-            '--no-zygote',
-            '--deterministic-fetch',
-            '--disable-features=IsolateOrigins',
-            '--disable-site-isolation-trials'],
-    });
+    const browser = await puppeteer.launch({ 
+    executablePath: '/usr/bin/chromium-browser', 
+    headless: true, 
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+});
     const page = await browser.newPage();
 
     try {
@@ -159,19 +152,12 @@ async function getMarketAnalystRecommendation(indice) {
     console.log("Fetching data from yahoo: " + indice);
 
     // Lancement du navigateur en mode visible pour le débogage
-    const browser = await puppeteer.launch({
-        headless: 'true',
-        args: ['--disable-gpu',
-            '--disable-dev-shm-usage',
-            '--disable-setuid-sandbox',
-            '--no-first-run',
-            '--no-sandbox',
-            '--no-zygote',
-            '--deterministic-fetch',
-            '--disable-features=IsolateOrigins',
-            '--disable-site-isolation-trials'],
-    });
-    const page = await browser.newPage();
+    const browser2 = await puppeteer.launch({ 
+    executablePath: '/usr/bin/chromium-browser', 
+    headless: true, 
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+});
+    const page = await browser2.newPage();
 
     try {
         // URL de la page d'analyse pour NVDA sur Yahoo Finance
@@ -217,6 +203,6 @@ async function getMarketAnalystRecommendation(indice) {
     } catch (error) {
         console.error("Une erreur est survenue :", error);
     } finally {
-        await browser.close();
+        await browser2.close();
     }
 }
