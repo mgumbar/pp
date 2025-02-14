@@ -161,10 +161,18 @@ async function getMarketAnalystRecommendation(indice) {
 
     // Lancement du navigateur en mode visible pour le débogage
     const browser2 = await puppeteer.launch({ 
-    executablePath: '/usr/bin/chromium-browser', 
-    headless: true, 
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
-});
+        executablePath: '/usr/bin/chromium-browser',
+    headless: true,
+            args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-crash-reporter',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--disable-software-rasterizer',
+      '--disable-extensions'
+    ]
+})
     const page = await browser2.newPage();
 
     try {
