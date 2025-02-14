@@ -1,14 +1,5 @@
-# Utiliser une image officielle de Node.js comme base
-FROM node:18
-
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /app
-
-# Copier le package.json et package-lock.json
-COPY package*.json ./
-
-# Installer toutes les dépendances
-RUN npm install
+# Utiliser une image Node.js officielle basée sur Debian slim
+FROM node:18-slim
 
 # Installation de Puppeteer (inclut également les dépendances manquantes)
 # Ceci installe les fichiers manquants nécessaires pour Puppeteer (ex : Chromium)
@@ -51,44 +42,18 @@ ca-certificates \
  xdg-utils \
     && npm i puppeteer --save
 
-RUN npx puppeteer browsers install chrome
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /usr/src/app
 
-# Créer le répertoire .cache/puppeteer
-RUN mkdir -p /app/.cache/puppeteer
+# Copier les fichiers de configuration de Node.js
+COPY package*.json ./
 
-# Télécharger et installer Google Chrome dans le répertoire .cache/puppeteer
-WORKDIR /app/.cache/puppeteer
-ENV PUPPETEER_CACHE_DIR=/app/.cache/puppeteer
-RUN  npx puppeteer browsers install chrome --install-deps
+# Installer les dépendances Node
+RUN npm install
 
-RUN ls -ld /app/.cache/puppeteer
-# Télécharger et installer Google Chrome
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt-get install -y ./google-chrome-stable_current_amd64.deb
-
-
-# Revenir au répertoire principal de travail
-WORKDIR /app
-
+# Copier le reste de l'application
 COPY . .
-
-# Créer un utilisateur non-root
-RUN groupadd -r puppeteer && useradd -r -g puppeteer -d /app puppeteer
-
-# Attribuer au nouvel utilisateur le dossier de l'application
-RUN chown -R puppeteer:puppeteer /app
-
-# Changer l'utilisateur actif
-USER puppeteer
-
-# Exposer le port d'écoute du projet (si un serveur est configuré pour répondre sur un port)
-EXPOSE 8081
-
-# Définir les variables d'environnement requises
-#ENV MONGO_URI=mongodb://mongodb:27017/marketData
-#ENV CODES=code-1,code-2
-
 # Commande pour démarrer l'application
-CMD ["node", "index.js"]
+CMD ["node", "test.js"]
 
 # Note: Assurez-vous de remplacer "index.js" par le nom correct de votre fichier principal
