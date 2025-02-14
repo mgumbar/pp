@@ -1,12 +1,6 @@
 {
-  "dependencies": {
-    "dotenv": "^16.4.7",
-    "mongodb": "^6.12.0",
-    "node-cron": "^3.0.3",
-    "puppeteer": "^24.2.0"
-  },
   "name": "puppeteer",
-  "version": "1.0.0",
+  "version": "24.2.1",
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
