@@ -6,6 +6,7 @@ const puppeteer = require('puppeteer');
             args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
+      '--disable-crash-reporter',
       '--disable-gpu',
       '--disable-dev-shm-usage',
       '--disable-software-rasterizer',
