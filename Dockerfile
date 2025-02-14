@@ -44,6 +44,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y \
+    chromium \
+    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /usr/src/app
 
