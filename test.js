@@ -1,5 +1,13 @@
 const puppeteer = require('puppeteer-core');
+import puppeteer from 'puppeteer-core/lib/esm/puppeteer/puppeteer-core-browser.js';
 
+const browser = await puppeteer.connect({
+  browserWSEndpoint: wsUrl,
+});
+
+alert('Browser has ' + (await browser.pages()).length + ' pages');
+
+browser.disconnect();
 (async () => {
   try {
     const browserURL = 'wss://46.101.203.58:3000';
