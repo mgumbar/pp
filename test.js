@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer-core');
 
 (async () => {
-  const wsUrl = 'ws://46.101.203.58:3000';
+  const wsUrl = 'ws://172.17.0.4:3000';
   
   try {
     // Se connecter au navigateur externe via son WebSocket Endpoint
