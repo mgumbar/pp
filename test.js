@@ -4,8 +4,9 @@ const puppeteer = require('puppeteer-core');
   try {
     const browserURL = 'http://46.101.203.58:3000';
     // Se connecter au navigateur externe lancé avec --remote-debugging-port
-    const browser = await puppeteer.connect({ browserURL });
-    
+    const browser = await puppeteer.connect({
+  browserWSEndpoint: browserURL,
+});
     const page = await browser.newPage();
     await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
     await page.screenshot({ path: 'google_screenshot.png' });
