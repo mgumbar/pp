@@ -16,7 +16,7 @@ const puppeteer = require('puppeteer-core');
     ]
 });
 */
-      const browserURL = 'http://localhost:9222';
+      const browserURL = 'http://localhost:3000';
   
   // Se connecter au navigateur externe
   const browser = await puppeteer.connect({ browserURL });
