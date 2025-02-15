@@ -1,15 +1,9 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 (async () => {
-  // Définir le point de terminaison WebSocket de browserless/chrome
-  const launchArgs = JSON.stringify({
-  args: [`--window-size=1920,1080`, `--user-data-dir=/tmp/chrome/data-dir`],
-  headless: false,
-  stealth: true,
-  timeout: 5000,
-});
 
-  const wsEndpoint = `ws://172.17.0.4:3000?launch='${launchArgs}`;
+
+  const wsEndpoint = `ws://172.17.0.4:3000`;
 
   // Se connecter au navigateur distant
   const browser = await puppeteer.connect({ browserWSEndpoint: wsEndpoint });
