@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer-core');
 
 (async () => {
   try {
-    const browserURL = 'http://46.101.203.58:3000';
+    const browserURL = 'wss://46.101.203.58:3000';
     // Se connecter au navigateur externe lancé avec --remote-debugging-port
     const browser = await puppeteer.connect({
   browserWSEndpoint: browserURL,
