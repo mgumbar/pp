@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer-core');
 
 (async () => {
+    /*
     const browser = await puppeteer.launch({ 
         executablePath: '/usr/bin/chromium-browser',
     headless: true,
@@ -14,6 +15,12 @@ const puppeteer = require('puppeteer-core');
       '--disable-extensions'
     ]
 });
+*/
+      const browserURL = 'http://localhost:9222';
+  
+  // Se connecter au navigateur externe
+  const browser = await puppeteer.connect({ browserURL });
+    
     const page = await browser.newPage();
     await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
     
