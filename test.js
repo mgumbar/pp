@@ -10,20 +10,22 @@ const puppeteer = require('puppeteer-core');
     const pages = await browser.pages();
     console.log('Le navigateur a ' + pages.length + ' pages.');
     
-    // Ouvrir une nouvelle page
-    const page = await browser.newPage();
+    // Optionnel : réutiliser la première page si elle existe déjà
+    const page = pages.length > 0 ? pages[0] : await browser.newPage();
+    
     await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
     
     // Prendre une capture d'écran
     await page.screenshot({ path: 'google_screenshot.png' });
     console.log('Capture d’écran enregistrée sous google_screenshot.png');
     
-    // Pour une instance externe, vous pouvez choisir de déconnecter au lieu de fermer :
+    // Pour une instance externe, il est souvent préférable de se déconnecter
+    // afin de ne pas fermer complètement le navigateur distant :
     // await browser.disconnect();
-    // Ou fermer si vous souhaitez arrêter le navigateur distant :
+    // Sinon, si vous souhaitez fermer l'instance distante :
     await browser.close();
     
   } catch (error) {
-    console.error('Erreur lors de l’elxécution du script :', error);
+    console.error('Erreur lors de l’exécution du script :', error);
   }
 })();
