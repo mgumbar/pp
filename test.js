@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer-core');
 (async () => {
 
 
-  const wsEndpoint = `ws://172.17.0.4:3000`;
+  const wsEndpoint = `ws://46.101.203.58:3000`;
 
   // Se connecter au navigateur distant
   const browser = await puppeteer.connect({ browserWSEndpoint: wsEndpoint });
