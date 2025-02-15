@@ -1,5 +1,5 @@
 // Assurez-vous d'avoir "type": "module" dans votre package.json pour utiliser cette syntaxe
-import puppeteer from 'puppeteer-core';
+const puppeteer = require('puppeteer-core');
 
 const wsUrl = 'wss://46.101.203.58:3000';
 
