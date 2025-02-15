@@ -16,7 +16,7 @@ const puppeteer = require('puppeteer-core');
     ]
 });
 */
-      const browserURL = 'http://172.17.0.4:3000';
+      const browserURL = 'https://46.101.203.58:3000';
   
   // Se connecter au navigateur externe
   const browser = await puppeteer.connect({ browserURL });
